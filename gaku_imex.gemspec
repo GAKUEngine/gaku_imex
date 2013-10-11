@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.requirements << 'postgres'
   s.requirements << 'redis'
 
-  s.add_dependency 'gaku_core'
+  s.add_dependency 'gaku_core', '~> 0.0.2'
 
   s.add_dependency 'roo'
   s.add_dependency 'gen_sheet'
