@@ -1,9 +1,3 @@
 require 'gaku_core'
+require 'gaku_imex/engine'
 require 'sidekiq/web'
-require 'thinreports-rails'
-
-module GakuImex
-  class Engine < Rails::Engine
-    engine_name 'gaku_imex'
-  end
-end

@@ -32,6 +32,19 @@ module GakuImex
       template 'Procfile', 'Procfile'
     end
 
+    def add_migrations
+      run 'rake railties:install:migrations FROM=gaku_imex'
+    end
+
+    def run_migrations
+      run_migrations = options[:auto_run_migrations] || ['', 'y', 'Y'].include?(ask 'Would you like to run the migrations now? [Y/n]')
+      if run_migrations
+        run 'rake db:migrate'
+      else
+        puts "Skiping rake db:migrate, don't forget to run it!"
+      end
+    end
+
     def notify_about_routes
       insert_into_file File.join('config', 'routes.rb'), after: "Application.routes.draw do\n" do
         %Q{
