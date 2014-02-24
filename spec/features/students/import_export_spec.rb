@@ -27,7 +27,7 @@ describe 'Student Sheet' do
         select 'Roster', from: 'importer_importer_type'
         absolute_path = Rails.root + '../support/sample_roster.xls'
         attach_file 'importer_data_file', absolute_path
-        click_button 'Submit'
+        click_button 'Import'
       end.to change(Gaku::Student, :count).by 2
 
       #page.should have_content 'created students:2'
