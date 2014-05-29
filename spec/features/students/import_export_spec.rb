@@ -1,7 +1,6 @@
 require 'spec_helper'
-require 'sidekiq/testing'
 
-describe 'Student Sheet' do
+describe 'Student Sheet', js: true do
 
   before { as :admin }
 
@@ -9,8 +8,10 @@ describe 'Student Sheet' do
   let!(:student2) { create(:student, name: 'Susumu', surname: 'Yokota') }
 
   context 'download' do
-    it 'downloads registration sheet' do
-      visit gaku.students_path
+    it 'downloads registration sheet', js: true do
+      visit gaku.admin_root_path
+      click '#importer-master-menu a'
+      click_link 'Student Importer'
      # click_link 'import-students-link'
      # click_link 'get_registration_csv'
 
@@ -20,7 +21,7 @@ describe 'Student Sheet' do
   end
 
   context 'upload' do
-    it 'imports from sheet' do
+    xit 'imports from sheet' do
       visit gaku.students_path
       expect do
         click_link 'import-students-link'

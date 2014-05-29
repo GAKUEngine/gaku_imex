@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 module Gaku
-  class Syllabuses::ImporterController < GakuController
+  class Admin::SyllabusesImportersController < Admin::BaseController
 
     skip_authorization_check
 

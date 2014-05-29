@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 id="importer-master-menu" class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#importer">
+        <%= t(:'menu.admin.importer.importer') %>
+      </a>
+    </h4>
+  </div>
+
+  <div id="importer" class="panel-body panel-collapse collapse">
+    <ul class="list-unstyled">
+      <li id="student-importer-menu">
+        <%= link_to t(:'menu.admin.importer.student'), [:admin, :students_importers], remote: true %>
+      </li>
+    </ul>
+  </div>
+</div>

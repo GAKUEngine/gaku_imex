@@ -21,20 +21,11 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'gaku_core', '~> 0.1.1'
   s.add_dependency 'gaku_testing', '~> 0.1.1'
-  s.add_dependency 'gaku_frontend', '~> 0.1.1'
+  s.add_dependency 'gaku_admin', '~> 0.1.1'
 
   s.add_dependency 'roo'
   s.add_dependency 'gen_sheet'
   s.add_dependency 'sidekiq'
   s.add_dependency 'sinatra'
 
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'factory_girl_rails', '~> 4.2.1'
-  s.add_development_dependency 'capybara', '~> 2.1'
-  s.add_development_dependency 'ffaker'
-  s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'selenium-webdriver',       '~> 2.39'
-  s.add_development_dependency 'poltergeist'
-  s.add_development_dependency 'handy_controller_helpers'
-  s.add_development_dependency 'shoulda-matchers',         '~> 2.5.0'
 end
