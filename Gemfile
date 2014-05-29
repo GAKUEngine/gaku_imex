@@ -1,6 +1,8 @@
 source 'http://production.s3.rubygems.org'
 
-gem 'gaku', github: 'Genshin/gaku'
+#gem 'gaku', github: 'Genshin/gaku'
+gem 'gaku', path: '../gaku'
+
 
 group :test do
   gem 'rspec-rails',              '~> 2.14.1'
