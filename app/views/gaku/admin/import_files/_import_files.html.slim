@@ -1,0 +1,7 @@
+.row
+  .col-md-12
+    = form_for :importer, html: { multipart: true } do |f|
+      h3 CSV Import
+      = f.file_field :data_file
+      br
+      = submit_tag t(:'import')
