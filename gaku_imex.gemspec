@@ -19,12 +19,10 @@ Gem::Specification.new do |s|
   s.requirements << 'postgres'
   s.requirements << 'redis'
 
-  s.add_dependency 'gaku_core', '~> 0.1.1'
+  s.add_dependency 'gaku_core',    '~> 0.1.1'
   s.add_dependency 'gaku_testing', '~> 0.1.1'
-  s.add_dependency 'gaku_admin', '~> 0.1.1'
+  s.add_dependency 'gaku_admin',   '~> 0.1.1'
 
-  s.add_dependency 'roo'
-  s.add_dependency 'gen_sheet'
   s.add_dependency 'sidekiq'
   s.add_dependency 'sinatra'
 

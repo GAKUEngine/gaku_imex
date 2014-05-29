@@ -1,5 +1,3 @@
-require 'GenSheet'
-
 module Gaku::Importers::Students
   class Csv
     include Gaku::Importers::Students::StudentIdentity
