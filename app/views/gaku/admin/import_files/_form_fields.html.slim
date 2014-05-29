@@ -1,0 +1,4 @@
+= f.file_field :data_file,        label: t(:'import_file.data_file')
+= f.select :importer_type,  options_for_select(Gaku::ImportFile::Types),  { class: 'form-control', prompt: t(:'import_file.choose')}, label: t(:'import_file.importer_type')
+
+
