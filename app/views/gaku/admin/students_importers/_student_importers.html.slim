@@ -9,16 +9,27 @@
         .controls
           = submit_tag t(:'student.download_roster'), class: 'span3 btn btn-primary'
     = hr
+
 .row
   .col-md-12
     = link_to_file t(:'student.download_registration_roster'), action: :get_registration_roster
     hr /
     = form_for :importer, html: { multipart: true } do |f|
-      h3 = t('student.import')
-      = t('file')
+      h3 = t(:'student.import')
+      = t(:'file')
       = f.file_field :data_file
       br /
       = t(:'import_format')
       = select("importer", "importer_type", @importer_types, {include_blank: false})
       br /
-      = submit_tag t'import'
+      = submit_tag t(:'import')
+
+hr
+
+.row
+  .col-md-12
+    = form_for :importer, html: { multipart: true } do |f|
+      h3 CSV Import
+      = f.file_field :data_file
+      br
+      = submit_tag t(:'import')

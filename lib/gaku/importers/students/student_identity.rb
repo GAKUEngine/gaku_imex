@@ -7,11 +7,9 @@ module Gaku::Importers::Students::StudentIdentity
     end
   end
 
-  def find_student_by_student_ids(student_id_number, student_foreign_id_number = nil)
-    student =  Gaku::Student.where(
-      student_id_number: normalize_id_num(student_id_number)).first
+  def find_student_by_student_ids(serial_id, foreign_id_code = nil)
+    student =  Gaku::Student.where(serial_id: normalize_id_num(student_id_number)).first
     return student unless student.nil?
-    Gaku::Student.where(
-      student_foreign_id_number: normalize_id_num(student_foreign_id_number)).first
+    Gaku::Student.where(foreign_id_code: normalize_id_num(foreign_id_code)).first
   end
 end

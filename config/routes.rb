@@ -2,7 +2,7 @@
 Gaku::Core::Engine.routes.draw  do
 
   namespace :admin do
-    resources :students_importers, only: %i( index create ) do
+    resources :students_importers, only: %i( index create show ) do
       collection do
         get :get_roster
         get :get_registration_roster

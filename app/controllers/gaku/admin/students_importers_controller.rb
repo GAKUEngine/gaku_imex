@@ -24,18 +24,26 @@ module Gaku
     end
 
     def create
-      redirect_to importer_index_path, alert: I18n.t('errors.messages.file_unreadable') && return if params[:importer][:data_file].nil?
-      file = ImportFile.new(import_params)
-      file.context = 'students'
-      raise 'COULD NOT SAVE FILE' unless file.save
-
-      case params[:importer][:importer_type]
-      when 'import_roster'
-        import_roster(file)
-      when 'import_school_station_zaikousei'
-        import_school_station_zaikousei(file)
+      @file = ImportFile.new(import_params)
+      if @file.save
+        redirect_to [:admin, :students_importers]
+      else
       end
     end
+
+    # def create
+    #   redirect_to importer_index_path, alert: I18n.t('errors.messages.file_unreadable') && return if params[:importer][:data_file].nil?
+    #   file = ImportFile.new(import_params)
+    #   file.context = 'students'
+    #   raise 'COULD NOT SAVE FILE' unless file.save
+
+    #   case params[:importer][:importer_type]
+    #   when 'import_roster'
+    #     import_roster(file)
+    #   when 'import_school_station_zaikousei'
+    #     import_school_station_zaikousei(file)
+    #   end
+    # end
 
     private
 
