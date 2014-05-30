@@ -1,8 +1,12 @@
 FactoryGirl.define do
 
   factory :import_file, class: Gaku::ImportFile do
-    context 'students'
-    #data_file File.open(Rails.root + "../support/sample_roster.xls")
+    importer_type 'students'
+    data_file do
+      fixture_file_upload(Rails.root + '../support/student.csv',
+                          'text/csv')
+    end
   end
+
 
 end

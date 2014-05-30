@@ -1,0 +1,7 @@
+$('#admin-import-files-index tbody').append('<%= j render("import_file", {import_file: @import_file}) %>');
+showNotice("<%= render_flash %>");
+
+$('#new-admin-import-file').slide();
+$('#new-admin-import-file-link').show();
+
+$('.admin-import-files-count').html("<%= print_count(@count, t(:'import_file.list')) %>");

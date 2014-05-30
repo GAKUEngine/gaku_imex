@@ -1,0 +1,3 @@
+= remote_form_for [:admin, @import_file], multipart: true, resource: 'admin-import-file' do |f|
+  = render 'form_fields', f: f
+  = buttons_for @import_file, resource: 'admin-import-file'

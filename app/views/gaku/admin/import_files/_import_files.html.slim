@@ -1,7 +1,24 @@
 .row
   .col-md-12
-    = form_for :importer, html: { multipart: true } do |f|
-      h3 CSV Import
-      = f.file_field :data_file
-      br
-      = submit_tag t(:'import')
+    #new-admin-import-file.d-none
+    .pull-left
+      = count_div 'admin-import-files-count' do
+        = print_count @count, t(:'import_file.list')
+    .pull-right
+      = ajax_link_to_new t(:'import_file.add'), [:new, :admin, :import_file], id: 'new-admin-import-file-link'
+
+hr
+
+#admin-import-files
+  = table_for 'admin-import-files-index' do
+    thead
+      tr
+        = th t(:'import_file.importer_type')
+        = th t(:'import_file.file_name')
+        = th t(:'import_file.file_size')
+        = th t(:'import_file.content_type')
+
+        = th_actions 2
+    tbody
+      = render partial: 'gaku/admin/import_files/import_file', collection: @import_files, as: :import_file
+
