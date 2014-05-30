@@ -12,10 +12,22 @@ module Gaku
 
     def as_csv
       CSV.generate do |csv|
-        column_names = self.class.column_names
-        csv << column_names
-        csv << attributes.values_at(*column_names)
+        values = []
+
+        csv << csv_column_fields
+        csv_column_fields.each { |value| values << self.send(value) }
+
+        csv << values
       end
+    end
+
+    private
+
+    def csv_column_fields
+      %i( serial_id foreign_id_code
+          name surname middle_name
+          name_reading surname_reading middle_name_reading
+          gender birth_date admitted  national_registration_code )
     end
 
   end
