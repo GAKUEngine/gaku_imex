@@ -3,8 +3,6 @@ module Gaku
 
     respond_to :js
 
-    skip_authorization_check
-
     before_action :set_import_file, only: :destroy
 
     def index

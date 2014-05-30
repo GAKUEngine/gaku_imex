@@ -1,16 +1,6 @@
-PATH
-  remote: .
-  specs:
-    gaku_imex (0.0.1)
-      gaku_admin (~> 0.1.1)
-      gaku_core (~> 0.1.1)
-      gaku_testing (~> 0.1.1)
-      sidekiq
-      sinatra
-      smarter_csv
-
-PATH
-  remote: ../gaku
+GIT
+  remote: git://github.com/Genshin/gaku.git
+  revision: 18f68a6356f2fc404a9c9a374a4232e0f6722b71
   specs:
     gaku (0.1.1)
       gaku_admin (= 0.1.1)
@@ -93,6 +83,17 @@ PATH
       gaku_core (= 0.1.1)
     gaku_testing (0.1.1)
       gaku_core (= 0.1.1)
+
+PATH
+  remote: .
+  specs:
+    gaku_imex (0.0.1)
+      gaku_admin (~> 0.1.1)
+      gaku_core (~> 0.1.1)
+      gaku_testing (~> 0.1.1)
+      sidekiq
+      sinatra
+      smarter_csv
 
 GEM
   remote: http://production.s3.rubygems.org/
@@ -244,14 +245,14 @@ GEM
       nested_form
       phantom_forms (~> 0.2.0.alpha3)
       rails4_client_side_validations
-    poltergeist (1.5.0)
+    poltergeist (1.5.1)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
     polyamorous (0.6.4)
       activerecord (>= 3.0)
-    polyglot (0.3.4)
+    polyglot (0.3.5)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack

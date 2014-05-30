@@ -38,7 +38,7 @@ describe 'Admin ImportFile' do
       click_link 'Importer'
     end
 
-    xit 'deletes', js: true do
+    it 'deletes', js: true do
       has_content? import_file.data_file_file_name
       count? 'Import files list(1)'
 
