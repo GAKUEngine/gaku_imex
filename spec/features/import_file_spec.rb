@@ -18,19 +18,19 @@ describe 'Admin ImportFile' do
       expect do
         absolute_path = Rails.root + '../support/student.csv'
         attach_file 'import_file_data_file', absolute_path
-        select 'student', from: 'import_file_importer_type'
+        select 'students', from: 'import_file_importer_type'
         click submit
         flash_created?
       end.to change(Gaku::ImportFile, :count).by 1
 
-      has_content? 'student'
+      has_content? 'students'
       has_content? 'Import files list(1)'
     end
 
     it { has_validations? }
   end
 
-  context 'existing' do
+  context 'existing', js: true do
 
     before do
       import_file
@@ -38,7 +38,13 @@ describe 'Admin ImportFile' do
       click_link 'Importer'
     end
 
-    it 'deletes', js: true do
+    it 'import' do
+      click '.import-link'
+      expect(page).to have_content('Importing for students started!')
+
+    end
+
+    it 'deletes' do
       has_content? import_file.data_file_file_name
       count? 'Import files list(1)'
 
