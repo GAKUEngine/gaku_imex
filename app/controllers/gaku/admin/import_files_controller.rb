@@ -3,7 +3,9 @@ module Gaku
 
     respond_to :js
 
-    before_action :set_import_file, only: :destroy
+    skip_authorization_check
+
+    before_action :set_import_file, only: %i( destroy import )
 
     def index
       @import_files = Gaku::ImportFile.all
@@ -25,6 +27,12 @@ module Gaku
     def destroy
       @import_file.destroy!
       set_count
+      respond_with @import_file
+    end
+
+    def import
+      @import_file.import
+      flash.now[:notice] = t(:'import_file.importing', type: @import_file.importer_type)
       respond_with @import_file
     end
 
