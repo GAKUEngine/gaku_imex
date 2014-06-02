@@ -18,12 +18,12 @@ describe 'Admin ImportFile' do
       expect do
         absolute_path = Rails.root + '../support/student.csv'
         attach_file 'import_file_data_file', absolute_path
-        select 'students', from: 'import_file_importer_type'
+        select 'student', from: 'import_file_importer_type'
         click submit
         flash_created?
       end.to change(Gaku::ImportFile, :count).by 1
 
-      has_content? 'students'
+      has_content? 'student'
       has_content? 'Import files list(1)'
     end
 

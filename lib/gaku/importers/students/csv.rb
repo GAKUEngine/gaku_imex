@@ -4,14 +4,18 @@ module Gaku::Importers::Students
 
     attr_reader :csv
 
-    def initialize(file)
-      @csv = SmarterCSV.process(file)
+    def initialize(file_path)
+      @csv = SmarterCSV.process(file_path)
     end
 
     def import
-
+      ActiveRecord::Base.transaction do
+        @csv.each_with_index do |row|
+          student = Gaku::Student.new(row)
+          student.save
+        end
+      end
     end
-
 
   end
 end
