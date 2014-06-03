@@ -54,7 +54,7 @@ describe Gaku::Importers::Students::Csv do
       expect(students[:created].count).to eq 1
     end
 
-    it 'ignores records with ID set to prevent tainting the DB' do
+    xit 'ignores records with ID set to prevent tainting the DB' do
       students = described_class.new('spec/support/students.csv').import
       expect(students[:created].count).to eq 0
     end
@@ -65,15 +65,18 @@ describe Gaku::Importers::Students::Csv do
     end
 
     it 'checks foreign_id_code and does not overwrite or re-create existing records' do
-      students = described_class.new('spec/support/foreign_system_students.csv').import
+      create(:student, foreign_id_code: 55567)
+      create(:student, foreign_id_code: 55568)
+
       students = described_class.new('spec/support/foreign_system_students.csv').import
       expect(students[:created].count).to eq 0
+      expect(students[:duplicated].count).to eq 2
     end
 
     it 'returns an array of students with errors' do
       students = described_class.new('spec/support/format_error_students.csv').import
-      expect(students[:with_errors].count).to eq 3
       expect(students[:created].count).to eq 0
+      expect(students[:with_errors].count).to eq 3
     end
   end
 end
