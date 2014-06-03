@@ -29,7 +29,7 @@ module Gaku::Importers::Students
     end
 
     def check_registration(row)
-      return true if row.id.nil? || row.id == ""
+      return true if row['id'].nil? || row['id'] == ""
       return true if Gaku::Student.exists?(foreign_id_code: row.foreign_id_code)
       false
     end
