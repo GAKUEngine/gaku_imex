@@ -44,5 +44,20 @@ describe Gaku::Importers::Students::Csv do
       created_student = Gaku::Student.last
       expect(created_student.enrollment_status.code).to eq 'enrolled'
     end
+
+    it 'returns an array of created students' do
+      students = subject
+      created_student = Gaku::Student.last
+      expect(students[:created]).to eq [created_student]
+      expect(students[:with_errors].count).to eq 0
+      expect(students[:created].count).to eq 1
+    end
+
+    it 'returns an array of students with errors' do
+      students = described_class.new('spec/support/student_with_error.csv').import
+      expect(students[:with_errors].count).to eq 1
+      expect(students[:created].count).to eq 0
+
+    end
   end
 end
