@@ -9,9 +9,13 @@ module Gaku::Importers::Students
     end
 
     def import
+      enrollment_status_code = Gaku::EnrollmentStatus.where(code: 'enrolled', active: true, immutable: true)
+                                                     .first_or_create!.try(:code)
+
       ActiveRecord::Base.transaction do
         @csv.each_with_index do |row|
           student = Gaku::Student.new(row)
+          student.enrollment_status_code = enrollment_status_code
           student.save
         end
       end
