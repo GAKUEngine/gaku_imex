@@ -16,7 +16,7 @@ describe 'Admin ImportFile' do
 
     it 'creates and shows' do
       expect do
-        absolute_path = Rails.root + '../support/student.csv'
+        absolute_path = Rails.root + '../support/new_students.csv'
         attach_file 'import_file_data_file', absolute_path
         select 'students', from: 'import_file_importer_type'
         click submit
