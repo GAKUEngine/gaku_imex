@@ -47,7 +47,7 @@ module Gaku::Importers::Students
 
     def filter_row(row)
       row.select do |k, v|
-        Gaku::Student.csv_column_fields.include?(k)
+        Gaku::Student.csv_column_fields.include?(k.to_i)
       end
     end
 
