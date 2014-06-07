@@ -14,10 +14,11 @@ module Gaku::Importers::Students
                                                      .first_or_create!.try(:code)
 
       ActiveRecord::Base.transaction do
-        @csv.each_with_index do |row|
+        @csv.each do |row|
           next if check_registration(row)
 
-          student = Gaku::Student.new(row)
+          student = Gaku::Student.new(filter_row(row))
+
           student.enrollment_status_code = enrollment_status_code
 
           if student.save
@@ -41,6 +42,12 @@ module Gaku::Importers::Students
     def check_foreign_id_code(row)
       if Gaku::Student.exists?(foreign_id_code: row[:foreign_id_code].to_s)
         @students[:duplicated] << Gaku::Student.where(foreign_id_code: row[:foreign_id_code].to_s).first
+      end
+    end
+
+    def filter_row(row)
+      row.select do |k, v|
+        Gaku::Student.csv_column_fields.include?(k.to_i)
       end
     end
 
