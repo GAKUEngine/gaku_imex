@@ -18,7 +18,6 @@ module Gaku::Importers::Students
           next if check_registration(row)
 
           student = Gaku::Student.new(filter_row(row))
-
           student.enrollment_status_code = enrollment_status_code
 
           if student.save
@@ -46,8 +45,8 @@ module Gaku::Importers::Students
     end
 
     def filter_row(row)
-      row.select do |k, v|
-        Gaku::Student.csv_column_fields.include?(k.to_i)
+      rows = row.select do |k, v|
+        Gaku::Student.csv_column_fields.include?(k.to_s)
       end
     end
 
