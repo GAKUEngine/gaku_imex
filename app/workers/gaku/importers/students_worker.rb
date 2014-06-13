@@ -5,8 +5,8 @@ module Gaku
       include Sidekiq::Worker
       sidekiq_options retry: false
 
-      def perform(file_path)
-        Gaku::Importers::Students::Csv.new(file_path).import
+      def perform(file_import_id, path)
+        Gaku::Importers::Students::Csv.new(file_import_id, path).import
       end
 
     end
