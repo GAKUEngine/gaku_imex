@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe Gaku::Importers::Students::Csv do
+
+  let!(:import_file) { create(:import_file) }
+
   describe 'initialize' do
     it 'initializes' do
-      expect(described_class.new('spec/support/new_students.csv').csv)
+      expect(described_class.new(import_file.id, 'spec/support/new_students.csv').csv)
         .to eq [{:national_registration_code=>999,
                   :name=>"零紀",
                   :middle_name=>"Flux",
@@ -19,7 +22,7 @@ describe Gaku::Importers::Students::Csv do
   end
 
   describe '#import' do
-    subject { described_class.new('spec/support/new_students.csv').import }
+    subject { described_class.new(import_file.id, 'spec/support/new_students.csv').import }
 
     it 'creates new student' do
       expect do
@@ -49,9 +52,9 @@ describe Gaku::Importers::Students::Csv do
     it 'returns an array of created students' do
       students = subject
       created_student = Gaku::Student.last
-      expect(students[:created]).to eq [created_student]
-      expect(students[:with_errors].count).to eq 0
-      expect(students[:created].count).to eq 1
+      expect($redis.lrange "import_file:#{import_file.id}:created", 0, -1).to eq [created_student.id.to_s]
+      expect($redis.llen "import_file:#{import_file.id}:created").to eq 1
+      expect($redis.llen "import_file:#{import_file.id}:not_saved").to eq 0
     end
 
     xit 'ignores records with ID set to prevent tainting the DB' do
@@ -60,22 +63,22 @@ describe Gaku::Importers::Students::Csv do
     end
 
     it 'imports students from a foreign system' do
-      students = described_class.new('spec/support/foreign_system_students.csv').import
-      expect(students[:created].count).to eq 2
+       described_class.new(import_file.id, 'spec/support/foreign_system_students.csv').import
+      expect($redis.llen "import_file:#{import_file.id}:created").to eq 2
     end
 
     it 'checks foreign_id_code and does not overwrite or re-create existing records' do
       create(:student, foreign_id_code: 55567)
       create(:student, foreign_id_code: 55568)
 
-      students = described_class.new('spec/support/foreign_system_students.csv').import
-      expect(students[:created].count).to eq 0
-      expect(students[:duplicated].count).to eq 2
+      described_class.new(import_file.id, 'spec/support/foreign_system_students.csv').import
+      expect($redis.llen "import_file:#{import_file.id}:created").to eq 0
+      expect($redis.llen "import_file:#{import_file.id}:duplicated").to eq 2
     end
 
     it 'returns an array of students with errors' do
-      students = described_class.new('spec/support/format_error_students.csv').import
-      expect(students[:with_errors].count).to eq 2
+      described_class.new(import_file.id, 'spec/support/format_error_students.csv').import
+      expect($redis.llen "import_file:#{import_file.id}:not_saved").to eq 2
     end
   end
 end
