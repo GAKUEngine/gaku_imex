@@ -1,7 +1,7 @@
 source 'http://production.s3.rubygems.org'
 
-#gem 'gaku', github: 'Genshin/gaku'
-gem 'gaku', path: '../gaku'
+gem 'gaku', github: 'Genshin/gaku'
+#gem 'gaku', path: '../gaku'
 
 
 group :test do
