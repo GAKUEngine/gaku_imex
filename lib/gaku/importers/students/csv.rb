@@ -2,10 +2,10 @@ module Gaku::Importers::Students
   class Csv
     include Gaku::Importers::Students::StudentIdentity
 
-    attr_reader :csv, :file_import_id
+    attr_reader :csv, :import_file_id
 
-    def initialize(file_import_id, path)
-      @file_import_id = file_import_id
+    def initialize(import_file_id, path)
+      @import_file_id = import_file_id
       @csv = SmarterCSV.process(path)
     end
 
@@ -24,9 +24,9 @@ module Gaku::Importers::Students
           student.enrollment_status_code = enrollment_status_code
 
           if student.save
-            $redis.rpush "import_file:#{@file_import_id}:created", student.id
+            $redis.rpush "import_file:#{@import_file_id}:created", student.id
           else
-            $redis.rpush "import_file:#{@file_import_id}:not_saved", not_saved_students(student)
+            $redis.rpush "import_file:#{@import_file_id}:not_saved", not_saved_students(student)
           end
         end
       end
@@ -36,7 +36,7 @@ module Gaku::Importers::Students
 
     def student_record(row)
       Gaku::Student.where(foreign_id_code: row[:foreign_id_code].to_s).first.try(:tap) do |student|
-        $redis.rpush "import_file:#{@file_import_id}:duplicated", student.id
+        $redis.rpush "import_file:#{@import_file_id}:duplicated", student.id
       end
     end
 
@@ -50,7 +50,7 @@ module Gaku::Importers::Students
 
     def cleanup_student_states
       %w( created duplicated not_saved ).each do |state|
-        $redis.del "import_file:#{@file_import_id}:#{state}"
+        $redis.del "import_file:#{@import_file_id}:#{state}"
       end
     end
 
