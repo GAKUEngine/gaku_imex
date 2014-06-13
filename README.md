@@ -1,13 +1,10 @@
 [![Build Status](https://travis-ci.org/GAKUEngine/gaku_imex.png)](https://travis-ci.org/GAKUEngine/gaku_imex)
+[![Code Climate](https://codeclimate.com/github/GAKUEngine/gaku_imex.png)](https://codeclimate.com/github/GAKUEngine/gaku_imex)
 
 gaku_imex
 =========
 
 Importers and Exporters for GAKU Engine
-
-
-NOT WORKING YET
-===============
 
 
 ### Install

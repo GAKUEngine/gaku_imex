@@ -75,8 +75,7 @@ describe Gaku::Importers::Students::Csv do
 
     it 'returns an array of students with errors' do
       students = described_class.new('spec/support/format_error_students.csv').import
-      expect(students[:created].count).to eq 0
-      expect(students[:with_errors].count).to eq 3
+      expect(students[:with_errors].count).to eq 2
     end
   end
 end
