@@ -1,7 +1,7 @@
 source 'http://production.s3.rubygems.org'
 
-gem 'gaku', github: 'Genshin/gaku'
-#gem 'gaku', path: '../gaku'
+#gem 'gaku', github: 'Genshin/gaku'
+gem 'gaku', path: '../gaku'
 
 
 group :test do
@@ -15,6 +15,7 @@ group :test do
   gem 'launchy'
   gem 'handy_controller_helpers', '0.0.3'
   gem 'simplecov'
+  gem 'rspec-retry'
   gem 'coveralls', require: false
 end
 
