@@ -1,0 +1,8 @@
+= table_for 'duplicated-students-index' do
+  thead
+    tr
+      = th t('student.foreign_id_code')
+      = th t('student.name')
+      = th t('student.surname')
+  tbody
+    = render partial: 'student', collection: @duplicated_students, as: :student
