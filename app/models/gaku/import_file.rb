@@ -8,11 +8,10 @@ module Gaku
     Types = %w( students )
 
     def import
-      begin
+      case importer_type
+      when 'students'
         klass = "Gaku::Importers::#{importer_type.capitalize}Worker".constantize
-        klass.perform_async(file_absolute_path)
-      rescue StandardError
-        $stderr.puts "Importer for:  #{importer_type} is not supported!"
+        klass.perform_async(id, file_absolute_path)
       end
     end
 

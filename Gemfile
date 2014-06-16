@@ -15,6 +15,7 @@ group :test do
   gem 'launchy'
   gem 'handy_controller_helpers', '0.0.3'
   gem 'simplecov'
+  gem 'rspec-retry'
   gem 'coveralls', require: false
 end
 

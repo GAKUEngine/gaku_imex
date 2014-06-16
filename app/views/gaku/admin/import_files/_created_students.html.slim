@@ -1,0 +1,8 @@
+= table_for 'created-students-index' do
+  thead
+    tr
+      = th t('student.foreign_id_code')
+      = th t('student.name')
+      = th t('student.surname')
+  tbody
+    = render partial: 'student', collection: @created_students, as: :student

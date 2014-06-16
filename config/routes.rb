@@ -3,7 +3,10 @@ Gaku::Core::Engine.routes.draw  do
 
   namespace :admin do
     resources :import_files do
-      get :import, on: :member
+      member do
+        get :import
+        get :check
+      end
     end
   end
 

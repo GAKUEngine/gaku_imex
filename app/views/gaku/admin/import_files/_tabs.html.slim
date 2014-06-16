@@ -1,0 +1,20 @@
+.row
+  .col-md-12
+    ul.nav.nav-tabs.nav-justified
+      li.active
+        a#created-students-tab-link data-toggle="tab" href="#created-students"
+          = print_count @created_students.count, "Created"
+      li
+        a#duplicated-students-tab-link data-toggle="tab" href="#duplicated-students"
+          = print_count @duplicated_students.count, "Duplicated"
+      li
+        a#not-saved-students-tab-link data-toggle="tab" href="#not-saved-students"
+          = print_count @not_saved_students.count, "Not saved"
+
+    .tab-content
+      #created-students.tab-pane.active
+        = render 'created_students'
+      #duplicated-students.tab-pane
+        = render 'duplicated_students'
+      #not-saved-students.tab-pane
+        = render 'not_saved_students'

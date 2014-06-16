@@ -1,0 +1,8 @@
+= table_for 'not-saved-students-index' do
+  thead
+    tr
+      = th t('student.foreign_id_code')
+      = th t('student.name')
+      = th t('student.surname')
+  tbody
+    = render partial: 'not_saved_student', collection: @not_saved_students, as: :student

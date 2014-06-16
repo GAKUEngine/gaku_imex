@@ -5,7 +5,7 @@ module Gaku
 
     skip_authorization_check
 
-    before_action :set_import_file, only: %i( destroy import )
+    before_action :set_import_file, only: %i( destroy import check )
 
     def index
       @import_files = Gaku::ImportFile.all
@@ -36,6 +36,14 @@ module Gaku
       respond_with @import_file
     end
 
+    def check
+      @created_students    = Gaku::Student.where(id: created_students)
+      @duplicated_students = Gaku::Student.where(id: duplicated_students )
+      @not_saved_students  = not_saved_students
+
+      respond_with @import_file
+    end
+
     private
 
     def set_import_file
@@ -48,6 +56,18 @@ module Gaku
 
     def set_count
       @count = Gaku::ImportFile.count
+    end
+
+    def created_students
+      $redis.lrange("import_file:#{@import_file.id}:created", 0, -1)
+    end
+
+    def duplicated_students
+      $redis.lrange("import_file:#{@import_file.id}:duplicated", 0, -1)
+    end
+
+    def not_saved_students
+      $redis.lrange("import_file:#{@import_file.id}:not_saved", 0, -1)
     end
 
   end
