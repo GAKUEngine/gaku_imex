@@ -1,0 +1,15 @@
+report.use_layout File.join(Gaku::Imex::Engine.root, 'app', 'reports', 'student_record_personal_info.ja')
+report.start_new_page do |page|
+  page.values student_name_reading: @student.name_reading,
+              student_name: "#{@student.surname} #{@student.name} ",
+              birth_date: @student.birth_date,
+              gender: @student.temp_gender,
+              student_address: @student.address_widget,
+              admitted: @student.admitted,
+              guardian_name: "#{@guardian.try(:surname)} #{@guardian.try(:name)}",
+              guardian_name_reading: "#{@guardian.try(:surname_reading)} #{@guardian.try(:name_reading)}",
+              guardian_address: @guardian.try(:address_widget),
+              school_name: @school.name,
+              school_address: @school.master_campus.address
+
+end
