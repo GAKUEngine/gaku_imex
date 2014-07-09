@@ -27,5 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sinatra'
 
   s.add_dependency 'smarter_csv'
+  s.add_dependency 'thinreports-rails'
+
 
 end
