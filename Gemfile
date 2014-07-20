@@ -3,7 +3,6 @@ source 'http://production.s3.rubygems.org'
 gem 'gaku', github: 'Genshin/gaku'
 #gem 'gaku', path: '../gaku'
 
-
 group :test do
   gem 'rspec-rails',              '~> 2.14.1'
   gem 'factory_girl_rails',       '~> 4.4.0'
@@ -17,6 +16,16 @@ group :test do
   gem 'simplecov'
   gem 'rspec-retry'
   gem 'coveralls', require: false
+end
+
+unless ENV['TRAVIS']
+  group :development do
+    gem 'guard'
+    gem 'rubocop'
+    gem 'guard-rspec'
+    gem 'guard-bundler'
+    gem 'guard-rubocop'
+  end
 end
 
 gemspec
