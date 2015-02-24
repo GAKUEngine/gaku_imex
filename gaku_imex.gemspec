@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.platform     = Gem::Platform::RUBY
   s.name         = 'gaku_imex'
-  s.version      = '0.2.0'
+  s.version      = '0.2.2'
   s.summary      = 'Importers and Exporters for GAKU Engine'
   s.description  = "Importers and Exporters for GAKU Engine"
   s.required_ruby_version = '>= 2.1.3'
