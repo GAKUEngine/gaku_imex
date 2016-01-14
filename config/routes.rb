@@ -14,4 +14,15 @@ Gaku::Core::Engine.routes.draw  do
     resources :reports, only: :index, controller: 'students/reports'
   end
 
+  resources :exams do
+    resources :reports, controller: 'exams/reports'
+  end
+  resources :courses do
+    resources :exams do
+      member do
+        post :generate, to: 'courses/exams/reports#generate'
+      end
+    end
+  end
+
 end

@@ -1,0 +1,3 @@
+.row
+  .col-md-12
+    = f.select :name, options_for_select(@template_names), {prompt: true}, class: 'span6', label: t(:'department.singular')

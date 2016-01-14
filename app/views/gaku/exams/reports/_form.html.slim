@@ -1,0 +1,3 @@
+= remote_form_for [@exam, @report], resource: 'exam-report' do |f|
+  = render 'gaku/exams/reports/form_fields', f: f
+  = buttons_for f.object, resource: 'exam-report'
