@@ -4,9 +4,9 @@ module Gaku
   module Exporters
     module Exams
       class ResultsRoster < Gaku::Exporters::Template
-        @name = 'Results Roster'
+        @name_def = 'Results Roster'
 
-        def generate(data)
+        def self.generate(data)
           # TODO export tlf
         end
       end

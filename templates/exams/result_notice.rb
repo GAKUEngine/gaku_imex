@@ -4,9 +4,9 @@ module Gaku
   module Exporters
     module Exams
       class ResultNotice < Gaku::Exporters::Template
-        @name = 'Result Notice'
+        @name_def = 'Result Notice'
 
-        def generate(data)
+        def self.generate(data)
           # TODO export tlf
         end
       end
