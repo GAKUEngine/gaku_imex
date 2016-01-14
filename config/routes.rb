@@ -17,8 +17,8 @@ Gaku::Core::Engine.routes.draw  do
   resources :exams do
     resources :reports, controller: 'exams/reports'
   end
-  resources :courses do
-    resources :exams do
+  resources :courses, only: [] do
+    resources :exams, only: [] do
       member do
         post :generate, to: 'courses/exams/reports#generate'
       end
