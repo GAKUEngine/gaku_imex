@@ -1,0 +1,6 @@
+$('#exam-reports-index tbody').append('<%= j render "report", {report: @report} %>');
+$('.reports-count').html("<%= @count %>");
+
+showNotice("<%= render_flash %>");
+$('#new-exam-report').slide()
+$('#new-exam-report-link').show()
