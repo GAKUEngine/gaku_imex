@@ -10,8 +10,4 @@ Gaku::Core::Engine.routes.draw  do
     end
   end
 
-  resources :students do
-    resources :reports, only: :index, controller: 'students/reports'
-  end
-
 end

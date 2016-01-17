@@ -1,0 +1,15 @@
+#reports-modal
+#exam-reports
+  = index_header do
+    #new-exam-report.d-none
+    .pull-right
+      = ajax_link_to_new 'New report', [:new, @exam, :report], id: 'new-exam-report-link'
+
+  = index_body do
+     = table_for 'exam-reports-index' do
+      thead
+        tr
+          = th t(:'name')
+          = th_actions 1
+      tbody
+        = render partial: 'gaku/exams/reports/report', collection: @reports, as: :report

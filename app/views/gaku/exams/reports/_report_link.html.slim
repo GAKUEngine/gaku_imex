@@ -1,0 +1,2 @@
+li#exams-reports-menu
+  = link_to badge_count(@exam.reports.count, 'Report', 'reports-count'), [@exam, :reports], remote: true
