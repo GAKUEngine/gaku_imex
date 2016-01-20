@@ -1,7 +1,7 @@
 require_relative '../template_index'
 
+require_relative 'exam_roster'
 require_relative 'result_notice'
-require_relative 'results_roster'
 
 module Gaku
   module Exporters
@@ -9,7 +9,7 @@ module Gaku
       class Templates < Gaku::Exporters::TemplateIndex
         @template_scope = :exams
         @template_list = [
-          Gaku::Exporters::Exams::ResultsRoster,
+          Gaku::Exporters::Exams::ExamRoster,
           Gaku::Exporters::Exams::ResultNotice
         ]
       end
