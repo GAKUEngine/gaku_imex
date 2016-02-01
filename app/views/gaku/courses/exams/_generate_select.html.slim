@@ -1,11 +1,13 @@
 .pull-right
   .input-group
+    - path = @course ? generate_course_exam_path : generate_exam_session_path
     / workaround for problem with deface. DONT CHANGE IT  !
-    - f = form_tag generate_course_exam_path, class: 'form-inline' do
+    - f = form_tag path, class: 'form-inline' do
       .form-group
       .pull-right
         = submit_tag 'Generate', class: 'btn btn-default'
       .pull-right
+        = @exam
         = select_tag "template", options_from_collection_for_select(@exam.reports, 'name', 'name'), class: 'form-control'
     = f
 br
