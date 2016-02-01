@@ -7,7 +7,6 @@
       .pull-right
         = submit_tag 'Generate', class: 'btn btn-default'
       .pull-right
-        = @exam
         = select_tag "template", options_from_collection_for_select(@exam.reports, 'name', 'name'), class: 'form-control'
     = f
 br
