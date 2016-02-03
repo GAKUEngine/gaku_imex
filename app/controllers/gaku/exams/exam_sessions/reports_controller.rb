@@ -4,7 +4,7 @@ class Gaku::Exams::ExamSessions::ReportsController < Gaku::GakuController
   before_action :set_exam
 
   def generate
-    @report = reporter_class.generate students: @exam_session.students
+    @report = reporter_class.generate students: @exam_session.students, exam_session: @exam_session, exam: @exam
     send_data @report, filename: report_filename, type: 'application/pdf'
   end
 

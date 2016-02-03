@@ -15,7 +15,7 @@ module Gaku
             data[:students].each do |student|
               page.list("exam_roster").add_row do |row|
                 row.item(:index_number).value(student.id)
-                row.item(:examinee_number).value(student.id)
+                row.item(:examinee_number).value(student.serial_id)
                 row.item(:examinee_name).value student.surname + ' ' + student.name
                 row.item(:examinee_name_reading).value student.surname_reading + ' ' + student.name_reading
                 if student.external_school_records_count
