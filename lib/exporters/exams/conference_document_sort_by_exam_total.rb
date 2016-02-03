@@ -18,7 +18,7 @@ module Gaku
           # 内申：音楽
           # 内申：美術
           # 内申：体育
-          # 内申：術家庭
+          # 内申：技術家庭
           # 内申：外国語
           # 欠席数：中２
           # 欠席数：中３
@@ -103,7 +103,7 @@ module Gaku
                     subjects_9 += score[:score].to_i
                   when '内申：体育'
                     subjects_9 += score[:score].to_i
-                  when '内申：術家庭'
+                  when '内申：技術家庭'
                     subjects_9 += score[:score].to_i
                   when '内申：外国語'
                     subjects_9 += score[:score].to_i
