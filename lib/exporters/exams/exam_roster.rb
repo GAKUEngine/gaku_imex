@@ -18,7 +18,7 @@ module Gaku
                 row.item(:examinee_number).value(student.serial_id)
                 row.item(:examinee_name).value student.surname + ' ' + student.name
                 row.item(:examinee_name_reading).value student.surname_reading + ' ' + student.name_reading
-                if student.external_school_records_count
+                if student.external_school_records.present?
                   school_name = student.external_school_records.last.school.name
                 else
                   school_name = 'none'

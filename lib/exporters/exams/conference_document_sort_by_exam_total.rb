@@ -8,20 +8,24 @@ module Gaku
 
         def self.generate(data)
           # portion names --------
-          # 試験：国語
-          # 試験：数学
-          # 試験：英語
-          # 内申：国語
-          # 内申：社会
-          # 内申：数学
-          # 内申：理科
-          # 内申：音楽
-          # 内申：美術
-          # 内申：体育
-          # 内申：技術家庭
-          # 内申：外国語
-          # 欠席数：中２
-          # 欠席数：中３
+          #   numerical:
+          #     試験：国語
+          #     試験：数学
+          #     試験：英語
+          #     内申：国語
+          #     内申：社会
+          #     内申：数学
+          #     内申：理科
+          #     内申：音楽
+          #     内申：美術
+          #     内申：体育
+          #     内申：技術家庭
+          #     内申：外国語
+          #     欠席数：中２
+          #     欠席数：中３
+          #   text:
+          #     志望学科
+          #     入試会場
           def self.get_added_total_score_students(data)
             new_students = []
             data[:students].map do |student|
@@ -61,7 +65,6 @@ module Gaku
                 row.item(:rank).value i + 1
 
                 row.item(:examinee_number).value student_data[:student][:serial_id]
-                row.item(:aspiring_department).value "test"
                 row.item(:examinee_name).value "#{student_data[:student][:surname].to_s} #{student_data[:student][:name].to_s}"
 
                 if student_data[:student].external_school_records.present?
@@ -114,6 +117,9 @@ module Gaku
                     row.item(:'2nd_year_middle_school').value score[:score].to_i
                   when '欠席数：中３'
                     row.item(:'3rd_year_middle_school').value score[:score].to_i
+
+                  when '志望学科'
+                    row.item(:aspiring_department).value score[:score_text]
                   end
                 end
                 row.item(:total).value student_data[:exam_total]
